@@ -28,13 +28,6 @@ removeItem(shoppingState, 'yogurt');
 console.log(shoppingState);
 
 
-// check and uncheck item on list listening to "check" buton
-// function checkButton(){
-// 	$('.shopping-item-toggle').click(function(event) {
-// 		//$('span', '.shopping-item').removeClass('.shopp');
-// 		$('.shopping-item').parent().addClass('.shopping-item__checked');
-// 	})
-// }
 
 //checkButton();
 
@@ -42,13 +35,43 @@ console.log(shoppingState);
 
 // remove item from list
 
-
+//let template = " all the html we need to add"
 //3 functions that render state
 
-//let template = " all the html we need to add"
+function renderItem(state, element) {
+	let itemsHtml = state.list.map(function(item) {
+		return (`
+			<li>
+        <span class="shopping-item">${item}</span>
+        <div class="shopping-item-controls">
+          <button class="shopping-item-toggle">
+            <span class="button-label">check</span>
+          </button>
+          <button class="shopping-item-delete">
+            <span class="button-label">delete</span>
+          </button>
+        </div>
+      </li>
+`);
+
+	});
+	$(element).html(itemsHtml);
+}
+
+//renderItem(shoppingState, 'ul',);
+
+
 
 //4 event listeners
+$(function() {
+	$('#js-shopping-list-form').on('submit', function(event){
+		addItem(shoppingState, $('#shopping-list-entry').val());
+		console.log(shoppingState);
 
+		//renderItem(shoppingState, 'ul');
+
+	})
+});
 // when user clicks/return call the add function
 //all the functions from step 2
 //${function(){
