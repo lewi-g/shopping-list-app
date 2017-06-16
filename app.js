@@ -1,23 +1,46 @@
 
 // 1 global state
 const shoppingState = {
-	list : [],
+	list:[],
 };
 
 //2 functions that modify state
 // add item to list
 function addItem(state, item) {
-	state.list.push(item);
-}
-// check and uncheck item on list listening to "check" buton
-function checkButton(){
-	$('.shopping-item-toggle').click(function(event) {
-		//$('span', '.shopping-item').removeClass('.shopp');
-		$('span','.shopping-item').addClass('.shopping-item__checked');
-	})
+	state.list.push({
+		displayName:item,
+		checkedOff: false 
+	});
 }
 
-checkButton();
+
+function removeItem(state, targetItem) {
+	state.list.find(function(stateItem) {
+		// find state item whose display name
+		// === targeted item displayname 
+		return state.list.displayname === state.list.displayName[targetItem];
+	// if item is in list, find the array index
+	})
+	//state.list.splice(index, 1);
+
+}
+
+
+addItem(shoppingState, 'yogurt');
+console.log(shoppingState);
+console.log(removeItem(shoppingState, 'yogurt'));
+//console.log(shoppingState);
+
+
+// check and uncheck item on list listening to "check" buton
+// function checkButton(){
+// 	$('.shopping-item-toggle').click(function(event) {
+// 		//$('span', '.shopping-item').removeClass('.shopp');
+// 		$('.shopping-item').parent().addClass('.shopping-item__checked');
+// 	})
+// }
+
+//checkButton();
 
 //function checkButton(item) {
 
@@ -32,6 +55,6 @@ checkButton();
 
 // when user clicks/return call the add function
 //all the functions from step 2
-${function(){
-	checkButton();
-}
+//${function(){
+	//checkButton();
+//}
