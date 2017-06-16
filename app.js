@@ -13,23 +13,19 @@ function addItem(state, item) {
 	});
 }
 
-
 function removeItem(state, targetItem) {
-	state.list.find(function(stateItem) {
-		// find state item whose display name
-		// === targeted item displayname 
-		return state.list.displayname === state.list.displayName[targetItem];
-	// if item is in list, find the array index
-	})
-	//state.list.splice(index, 1);
-
+	let deletedItem = state.list.find(function(stateItem) {
+		return stateItem.displayName === targetItem;	
+	});
+	let index = state.list.indexOf(deletedItem);
+	state.list.splice(index, 1);
 }
 
 
 addItem(shoppingState, 'yogurt');
 console.log(shoppingState);
-console.log(removeItem(shoppingState, 'yogurt'));
-//console.log(shoppingState);
+removeItem(shoppingState, 'yogurt');
+console.log(shoppingState);
 
 
 // check and uncheck item on list listening to "check" buton
